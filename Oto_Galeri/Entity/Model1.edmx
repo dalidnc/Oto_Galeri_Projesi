@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_GaleriModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TblAracBilgileri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marka" Type="varchar" MaxLength="50" />
+          <Property Name="Plaka" Type="varchar" MaxLength="10" />
+          <Property Name="Kilometre" Type="bigint" />
+          <Property Name="Alis_Fiyati" Type="bigint" />
+          <Property Name="Satis_Fiyati" Type="bigint" />
+          <Property Name="Alim_Tarihi" Type="datetime" />
+          <Property Name="Satis_Tarihi" Type="datetime" />
+          <Property Name="Resim" Type="varchar" MaxLength="50" />
+          <Property Name="Durum" Type="varchar" MaxLength="50" />
+          <Property Name="Musteri_ID" Type="int" />
+          <Property Name="Kategori_No" Type="int" />
+        </EntityType>
+        <EntityType Name="TblKategori">
+          <Key>
+            <PropertyRef Name="Kategori_ID" />
+          </Key>
+          <Property Name="Kategori_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kategoriler" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TblMusteri">
+          <Key>
+            <PropertyRef Name="MusteriID" />
+          </Key>
+          <Property Name="MusteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="50" />
+          <Property Name="Soyad" Type="varchar" MaxLength="50" />
+          <Property Name="Telefon" Type="bigint" />
+          <Property Name="Arac" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Degree" Type="nchar" MaxLength="10" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="LoginTime" Type="datetime" />
+          <Property Name="LogoutTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Galeri.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="MusteriID" />
+          </Key>
+          <Property Name="MusteriID" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="50" />
+          <Property Name="Soyad" Type="varchar" MaxLength="50" />
+          <Property Name="Telefon" Type="bigint" />
+          <Property Name="Arac" Type="int" />
+          <Property Name="Marka" Type="varchar" MaxLength="50" />
+          <Property Name="Plaka" Type="varchar" MaxLength="10" />
+          <Property Name="Kilometre" Type="bigint" />
+          <Property Name="Alis_Fiyati" Type="bigint" />
+          <Property Name="Satis_Fiyati" Type="bigint" />
+          <Property Name="Satis_Tarihi" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Galeri.dbo.View_3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_3">
+          <Key>
+            <PropertyRef Name="MusteriID" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Kategori_ID" />
+          </Key>
+          <Property Name="MusteriID" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="50" />
+          <Property Name="Soyad" Type="varchar" MaxLength="50" />
+          <Property Name="Telefon" Type="bigint" />
+          <Property Name="Arac" Type="int" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Marka" Type="varchar" MaxLength="50" />
+          <Property Name="Plaka" Type="varchar" MaxLength="10" />
+          <Property Name="Kilometre" Type="bigint" />
+          <Property Name="Satis_Fiyati" Type="bigint" />
+          <Property Name="Satis_Tarihi" Type="datetime" />
+          <Property Name="Durum" Type="varchar" MaxLength="50" />
+          <Property Name="Kategori_ID" Type="int" Nullable="false" />
+          <Property Name="Kategoriler" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Galeri.dbo.View_4' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_4">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marka" Type="varchar" MaxLength="50" />
+          <Property Name="Plaka" Type="varchar" MaxLength="10" />
+          <Property Name="Kilometre" Type="bigint" />
+          <Property Name="Alis_Fiyati" Type="bigint" />
+          <Property Name="Satis_Fiyati" Type="bigint" />
+          <Property Name="Satis_Tarihi" Type="datetime" />
+          <Property Name="Resim" Type="varchar" MaxLength="50" />
+          <Property Name="Durum" Type="varchar" MaxLength="50" />
+          <Property Name="Kategori_No" Type="int" />
+        </EntityType>
+        <Association Name="FK_TblAracBilgileri_TblKategori">
+          <End Role="TblKategori" Type="Self.TblKategori" Multiplicity="0..1" />
+          <End Role="TblAracBilgileri" Type="Self.TblAracBilgileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblKategori">
+              <PropertyRef Name="Kategori_ID" />
+            </Principal>
+            <Dependent Role="TblAracBilgileri">
+              <PropertyRef Name="Kategori_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblAracBilgileri_TblMusteri">
+          <End Role="TblMusteri" Type="Self.TblMusteri" Multiplicity="0..1" />
+          <End Role="TblAracBilgileri" Type="Self.TblAracBilgileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMusteri">
+              <PropertyRef Name="MusteriID" />
+            </Principal>
+            <Dependent Role="TblAracBilgileri">
+              <PropertyRef Name="Musteri_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMusteri_TblAracBilgileri">
+          <End Role="TblAracBilgileri" Type="Self.TblAracBilgileri" Multiplicity="0..1" />
+          <End Role="TblMusteri" Type="Self.TblMusteri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblAracBilgileri">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TblMusteri">
+              <PropertyRef Name="Arac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Arac_SAT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Musteriler" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DB_GaleriModelStoreContainer">
+          <EntitySet Name="TblAracBilgileri" EntityType="Self.TblAracBilgileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblKategori" EntityType="Self.TblKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMusteri" EntityType="Self.TblMusteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_1].[MusteriID] AS [MusteriID], 
+    [View_1].[Ad] AS [Ad], 
+    [View_1].[Soyad] AS [Soyad], 
+    [View_1].[Telefon] AS [Telefon], 
+    [View_1].[Arac] AS [Arac], 
+    [View_1].[Marka] AS [Marka], 
+    [View_1].[Plaka] AS [Plaka], 
+    [View_1].[Kilometre] AS [Kilometre], 
+    [View_1].[Alis_Fiyati] AS [Alis_Fiyati], 
+    [View_1].[Satis_Fiyati] AS [Satis_Fiyati], 
+    [View_1].[Satis_Tarihi] AS [Satis_Tarihi]
+    FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_3" EntityType="Self.View_3" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_3].[MusteriID] AS [MusteriID], 
+    [View_3].[Ad] AS [Ad], 
+    [View_3].[Soyad] AS [Soyad], 
+    [View_3].[Telefon] AS [Telefon], 
+    [View_3].[Arac] AS [Arac], 
+    [View_3].[ID] AS [ID], 
+    [View_3].[Marka] AS [Marka], 
+    [View_3].[Plaka] AS [Plaka], 
+    [View_3].[Kilometre] AS [Kilometre], 
+    [View_3].[Satis_Fiyati] AS [Satis_Fiyati], 
+    [View_3].[Satis_Tarihi] AS [Satis_Tarihi], 
+    [View_3].[Durum] AS [Durum], 
+    [View_3].[Kategori_ID] AS [Kategori_ID], 
+    [View_3].[Kategoriler] AS [Kategoriler]
+    FROM [dbo].[View_3] AS [View_3]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_4" EntityType="Self.View_4" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_4].[ID] AS [ID], 
+    [View_4].[Marka] AS [Marka], 
+    [View_4].[Plaka] AS [Plaka], 
+    [View_4].[Kilometre] AS [Kilometre], 
+    [View_4].[Alis_Fiyati] AS [Alis_Fiyati], 
+    [View_4].[Satis_Fiyati] AS [Satis_Fiyati], 
+    [View_4].[Satis_Tarihi] AS [Satis_Tarihi], 
+    [View_4].[Resim] AS [Resim], 
+    [View_4].[Durum] AS [Durum], 
+    [View_4].[Kategori_No] AS [Kategori_No]
+    FROM [dbo].[View_4] AS [View_4]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_TblAracBilgileri_TblKategori" Association="Self.FK_TblAracBilgileri_TblKategori">
+            <End Role="TblKategori" EntitySet="TblKategori" />
+            <End Role="TblAracBilgileri" EntitySet="TblAracBilgileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblAracBilgileri_TblMusteri" Association="Self.FK_TblAracBilgileri_TblMusteri">
+            <End Role="TblMusteri" EntitySet="TblMusteri" />
+            <End Role="TblAracBilgileri" EntitySet="TblAracBilgileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblMusteri_TblAracBilgileri" Association="Self.FK_TblMusteri_TblAracBilgileri">
+            <End Role="TblAracBilgileri" EntitySet="TblAracBilgileri" />
+            <End Role="TblMusteri" EntitySet="TblMusteri" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_GaleriModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TblAracBilgileri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Kilometre" Type="Int64" />
+          <Property Name="Alis_Fiyati" Type="Int64" />
+          <Property Name="Satis_Fiyati" Type="Int64" />
+          <Property Name="Alim_Tarihi" Type="DateTime" Precision="3" />
+          <Property Name="Satis_Tarihi" Type="DateTime" Precision="3" />
+          <Property Name="Resim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Musteri_ID" Type="Int32" />
+          <Property Name="Kategori_No" Type="Int32" />
+          <NavigationProperty Name="TblKategori" Relationship="Self.FK_TblAracBilgileri_TblKategori" FromRole="TblAracBilgileri" ToRole="TblKategori" />
+          <NavigationProperty Name="TblMusteri" Relationship="Self.FK_TblAracBilgileri_TblMusteri" FromRole="TblAracBilgileri" ToRole="TblMusteri" />
+          <NavigationProperty Name="TblMusteri1" Relationship="Self.FK_TblMusteri_TblAracBilgileri" FromRole="TblAracBilgileri" ToRole="TblMusteri" />
+        </EntityType>
+        <EntityType Name="TblKategori">
+          <Key>
+            <PropertyRef Name="Kategori_ID" />
+          </Key>
+          <Property Name="Kategori_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategoriler" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TblAracBilgileri" Relationship="Self.FK_TblAracBilgileri_TblKategori" FromRole="TblKategori" ToRole="TblAracBilgileri" />
+        </EntityType>
+        <EntityType Name="TblMusteri">
+          <Key>
+            <PropertyRef Name="MusteriID" />
+          </Key>
+          <Property Name="MusteriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="Int64" />
+          <Property Name="Arac" Type="Int32" />
+          <NavigationProperty Name="TblAracBilgileri" Relationship="Self.FK_TblAracBilgileri_TblMusteri" FromRole="TblMusteri" ToRole="TblAracBilgileri" />
+          <NavigationProperty Name="TblAracBilgileri1" Relationship="Self.FK_TblMusteri_TblAracBilgileri" FromRole="TblMusteri" ToRole="TblAracBilgileri" />
+        </EntityType>
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="MusteriID" />
+          </Key>
+          <Property Name="MusteriID" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="Int64" />
+          <Property Name="Arac" Type="Int32" />
+          <Property Name="Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Kilometre" Type="Int64" />
+          <Property Name="Alis_Fiyati" Type="Int64" />
+          <Property Name="Satis_Fiyati" Type="Int64" />
+          <Property Name="Satis_Tarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="View_3">
+          <Key>
+            <PropertyRef Name="MusteriID" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Kategori_ID" />
+          </Key>
+          <Property Name="MusteriID" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="Int64" />
+          <Property Name="Arac" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Kilometre" Type="Int64" />
+          <Property Name="Satis_Fiyati" Type="Int64" />
+          <Property Name="Satis_Tarihi" Type="DateTime" Precision="3" />
+          <Property Name="Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori_ID" Type="Int32" Nullable="false" />
+          <Property Name="Kategoriler" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_TblAracBilgileri_TblKategori">
+          <End Role="TblKategori" Type="Self.TblKategori" Multiplicity="0..1" />
+          <End Role="TblAracBilgileri" Type="Self.TblAracBilgileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblKategori">
+              <PropertyRef Name="Kategori_ID" />
+            </Principal>
+            <Dependent Role="TblAracBilgileri">
+              <PropertyRef Name="Kategori_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblAracBilgileri_TblMusteri">
+          <End Role="TblMusteri" Type="Self.TblMusteri" Multiplicity="0..1" />
+          <End Role="TblAracBilgileri" Type="Self.TblAracBilgileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMusteri">
+              <PropertyRef Name="MusteriID" />
+            </Principal>
+            <Dependent Role="TblAracBilgileri">
+              <PropertyRef Name="Musteri_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMusteri_TblAracBilgileri">
+          <End Role="TblAracBilgileri" Type="Self.TblAracBilgileri" Multiplicity="0..1" />
+          <End Role="TblMusteri" Type="Self.TblMusteri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblAracBilgileri">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TblMusteri">
+              <PropertyRef Name="Arac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_GaleriEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblAracBilgileri" EntityType="Self.TblAracBilgileri" />
+          <EntitySet Name="TblKategori" EntityType="Self.TblKategori" />
+          <EntitySet Name="TblMusteri" EntityType="Self.TblMusteri" />
+          <EntitySet Name="View_1" EntityType="Self.View_1" />
+          <EntitySet Name="View_3" EntityType="Self.View_3" />
+          <AssociationSet Name="FK_TblAracBilgileri_TblKategori" Association="Self.FK_TblAracBilgileri_TblKategori">
+            <End Role="TblKategori" EntitySet="TblKategori" />
+            <End Role="TblAracBilgileri" EntitySet="TblAracBilgileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblAracBilgileri_TblMusteri" Association="Self.FK_TblAracBilgileri_TblMusteri">
+            <End Role="TblMusteri" EntitySet="TblMusteri" />
+            <End Role="TblAracBilgileri" EntitySet="TblAracBilgileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblMusteri_TblAracBilgileri" Association="Self.FK_TblMusteri_TblAracBilgileri">
+            <End Role="TblAracBilgileri" EntitySet="TblAracBilgileri" />
+            <End Role="TblMusteri" EntitySet="TblMusteri" />
+          </AssociationSet>
+          <FunctionImport Name="Arac_SAT" ReturnType="Collection(DB_GaleriModel.Arac_SAT_Result)" />
+          <FunctionImport Name="Musteriler" ReturnType="Collection(DB_GaleriModel.Musteriler_Result)" />
+          <EntitySet Name="Users" EntityType="DB_GaleriModel.Users" />
+          <EntitySet Name="View_4" EntityType="DB_GaleriModel.View_4" />
+        </EntityContainer>
+        <ComplexType Name="Arac_SAT_Result">
+          <Property Type="Int32" Name="MusteriID" Nullable="false" />
+          <Property Type="String" Name="Ad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Soyad" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="Telefon" Nullable="true" />
+          <Property Type="Int32" Name="Araç_ID" Nullable="true" />
+          <Property Type="String" Name="Marka" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Plaka" Nullable="true" MaxLength="10" />
+          <Property Type="Int64" Name="Satis_Fiyati" Nullable="true" />
+          <Property Type="DateTime" Name="Satis_Tarihi" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Kategoriler" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Durum" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Musteriler_Result">
+          <Property Type="Int32" Name="MusteriID" Nullable="false" />
+          <Property Type="String" Name="Ad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Soyad" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="Telefon" Nullable="true" />
+          <Property Type="Int32" Name="Araç_ID" Nullable="true" />
+          <Property Type="String" Name="Marka" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Plaka" Nullable="true" MaxLength="10" />
+          <Property Type="Int64" Name="Kilometre" Nullable="true" />
+          <Property Type="Int64" Name="Satis_Fiyati" Nullable="true" />
+          <Property Type="DateTime" Name="Satis_Tarihi" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Kategori_Türü" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Degree" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LoginTime" Type="DateTime" Precision="3" />
+          <Property Name="LogoutTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="View_4">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Kilometre" Type="Int64" />
+          <Property Name="Alis_Fiyati" Type="Int64" />
+          <Property Name="Satis_Fiyati" Type="Int64" />
+          <Property Name="Satis_Tarihi" Type="DateTime" Precision="3" />
+          <Property Name="Resim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori_No" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_GaleriModelStoreContainer" CdmEntityContainer="DB_GaleriEntities">
+          <EntitySetMapping Name="TblAracBilgileri">
+            <EntityTypeMapping TypeName="DB_GaleriModel.TblAracBilgileri">
+              <MappingFragment StoreEntitySet="TblAracBilgileri">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Plaka" ColumnName="Plaka" />
+                <ScalarProperty Name="Kilometre" ColumnName="Kilometre" />
+                <ScalarProperty Name="Alis_Fiyati" ColumnName="Alis_Fiyati" />
+                <ScalarProperty Name="Satis_Fiyati" ColumnName="Satis_Fiyati" />
+                <ScalarProperty Name="Alim_Tarihi" ColumnName="Alim_Tarihi" />
+                <ScalarProperty Name="Satis_Tarihi" ColumnName="Satis_Tarihi" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Musteri_ID" ColumnName="Musteri_ID" />
+                <ScalarProperty Name="Kategori_No" ColumnName="Kategori_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblKategori">
+            <EntityTypeMapping TypeName="DB_GaleriModel.TblKategori">
+              <MappingFragment StoreEntitySet="TblKategori">
+                <ScalarProperty Name="Kategori_ID" ColumnName="Kategori_ID" />
+                <ScalarProperty Name="Kategoriler" ColumnName="Kategoriler" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMusteri">
+            <EntityTypeMapping TypeName="DB_GaleriModel.TblMusteri">
+              <MappingFragment StoreEntitySet="TblMusteri">
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Arac" ColumnName="Arac" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_1">
+            <EntityTypeMapping TypeName="DB_GaleriModel.View_1">
+              <MappingFragment StoreEntitySet="View_1">
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Arac" ColumnName="Arac" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Plaka" ColumnName="Plaka" />
+                <ScalarProperty Name="Kilometre" ColumnName="Kilometre" />
+                <ScalarProperty Name="Alis_Fiyati" ColumnName="Alis_Fiyati" />
+                <ScalarProperty Name="Satis_Fiyati" ColumnName="Satis_Fiyati" />
+                <ScalarProperty Name="Satis_Tarihi" ColumnName="Satis_Tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_3">
+            <EntityTypeMapping TypeName="DB_GaleriModel.View_3">
+              <MappingFragment StoreEntitySet="View_3">
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Arac" ColumnName="Arac" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Plaka" ColumnName="Plaka" />
+                <ScalarProperty Name="Kilometre" ColumnName="Kilometre" />
+                <ScalarProperty Name="Satis_Fiyati" ColumnName="Satis_Fiyati" />
+                <ScalarProperty Name="Satis_Tarihi" ColumnName="Satis_Tarihi" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Kategori_ID" ColumnName="Kategori_ID" />
+                <ScalarProperty Name="Kategoriler" ColumnName="Kategoriler" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Arac_SAT" FunctionName="DB_GaleriModel.Store.Arac_SAT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_GaleriModel.Arac_SAT_Result">
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Araç_ID" ColumnName="Araç ID" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Plaka" ColumnName="Plaka" />
+                <ScalarProperty Name="Satis_Fiyati" ColumnName="Satis_Fiyati" />
+                <ScalarProperty Name="Satis_Tarihi" ColumnName="Satis_Tarihi" />
+                <ScalarProperty Name="Kategoriler" ColumnName="Kategoriler" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Musteriler" FunctionName="DB_GaleriModel.Store.Musteriler">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_GaleriModel.Musteriler_Result">
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Araç_ID" ColumnName="Araç ID" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Plaka" ColumnName="Plaka" />
+                <ScalarProperty Name="Kilometre" ColumnName="Kilometre" />
+                <ScalarProperty Name="Satis_Fiyati" ColumnName="Satis_Fiyati" />
+                <ScalarProperty Name="Satis_Tarihi" ColumnName="Satis_Tarihi" />
+                <ScalarProperty Name="Kategori_Türü" ColumnName="Kategori Türü" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DB_GaleriModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="LogoutTime" ColumnName="LogoutTime" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_4">
+            <EntityTypeMapping TypeName="DB_GaleriModel.View_4">
+              <MappingFragment StoreEntitySet="View_4">
+                <ScalarProperty Name="Kategori_No" ColumnName="Kategori_No" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="Satis_Tarihi" ColumnName="Satis_Tarihi" />
+                <ScalarProperty Name="Satis_Fiyati" ColumnName="Satis_Fiyati" />
+                <ScalarProperty Name="Alis_Fiyati" ColumnName="Alis_Fiyati" />
+                <ScalarProperty Name="Kilometre" ColumnName="Kilometre" />
+                <ScalarProperty Name="Plaka" ColumnName="Plaka" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

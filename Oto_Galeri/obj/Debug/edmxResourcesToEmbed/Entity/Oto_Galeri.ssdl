@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_GaleriModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TblAracBilgileri">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Marka" Type="varchar" MaxLength="50" />
+    <Property Name="Plaka" Type="varchar" MaxLength="10" />
+    <Property Name="Kilometre" Type="bigint" />
+    <Property Name="Alis_Fiyati" Type="bigint" />
+    <Property Name="Satis_Fiyati" Type="bigint" />
+    <Property Name="Alim_Tarihi" Type="datetime" />
+    <Property Name="Satis_Tarihi" Type="datetime" />
+    <Property Name="Resim" Type="varchar" MaxLength="50" />
+    <Property Name="Durum" Type="varchar" MaxLength="50" />
+    <Property Name="Musteri_ID" Type="int" />
+    <Property Name="Kategori_No" Type="int" />
+  </EntityType>
+  <EntityType Name="TblKategori">
+    <Key>
+      <PropertyRef Name="Kategori_ID" />
+    </Key>
+    <Property Name="Kategori_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kategoriler" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TblMusteri">
+    <Key>
+      <PropertyRef Name="MusteriID" />
+    </Key>
+    <Property Name="MusteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+    <Property Name="Soyad" Type="varchar" MaxLength="50" />
+    <Property Name="Telefon" Type="bigint" />
+    <Property Name="Arac" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Galeri.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_1">
+    <Key>
+      <PropertyRef Name="MusteriID" />
+    </Key>
+    <Property Name="MusteriID" Type="int" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+    <Property Name="Soyad" Type="varchar" MaxLength="50" />
+    <Property Name="Telefon" Type="bigint" />
+    <Property Name="Arac" Type="int" />
+    <Property Name="Marka" Type="varchar" MaxLength="50" />
+    <Property Name="Plaka" Type="varchar" MaxLength="10" />
+    <Property Name="Kilometre" Type="bigint" />
+    <Property Name="Alis_Fiyati" Type="bigint" />
+    <Property Name="Satis_Fiyati" Type="bigint" />
+    <Property Name="Satis_Tarihi" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Galeri.dbo.View_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_2">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Kategori_ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Marka" Type="varchar" MaxLength="50" />
+    <Property Name="Plaka" Type="varchar" MaxLength="10" />
+    <Property Name="Kilometre" Type="bigint" />
+    <Property Name="Alis_Fiyati" Type="bigint" />
+    <Property Name="Alim_Tarihi" Type="datetime" />
+    <Property Name="Resim" Type="varchar" MaxLength="50" />
+    <Property Name="Kategori_ID" Type="int" Nullable="false" />
+    <Property Name="Kategoriler" Type="varchar" MaxLength="20" />
+    <Property Name="Durum" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Galeri.dbo.View_3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_3">
+    <Key>
+      <PropertyRef Name="MusteriID" />
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Kategori_ID" />
+    </Key>
+    <Property Name="MusteriID" Type="int" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+    <Property Name="Soyad" Type="varchar" MaxLength="50" />
+    <Property Name="Telefon" Type="bigint" />
+    <Property Name="Arac" Type="int" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Marka" Type="varchar" MaxLength="50" />
+    <Property Name="Plaka" Type="varchar" MaxLength="10" />
+    <Property Name="Kilometre" Type="bigint" />
+    <Property Name="Satis_Fiyati" Type="bigint" />
+    <Property Name="Satis_Tarihi" Type="datetime" />
+    <Property Name="Durum" Type="varchar" MaxLength="50" />
+    <Property Name="Kategori_ID" Type="int" Nullable="false" />
+    <Property Name="Kategoriler" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_TblAracBilgileri_TblKategori">
+    <End Role="TblKategori" Type="Self.TblKategori" Multiplicity="0..1" />
+    <End Role="TblAracBilgileri" Type="Self.TblAracBilgileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKategori">
+        <PropertyRef Name="Kategori_ID" />
+      </Principal>
+      <Dependent Role="TblAracBilgileri">
+        <PropertyRef Name="Kategori_No" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblAracBilgileri_TblMusteri">
+    <End Role="TblMusteri" Type="Self.TblMusteri" Multiplicity="0..1" />
+    <End Role="TblAracBilgileri" Type="Self.TblAracBilgileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblMusteri">
+        <PropertyRef Name="MusteriID" />
+      </Principal>
+      <Dependent Role="TblAracBilgileri">
+        <PropertyRef Name="Musteri_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblMusteri_TblAracBilgileri">
+    <End Role="TblAracBilgileri" Type="Self.TblAracBilgileri" Multiplicity="0..1" />
+    <End Role="TblMusteri" Type="Self.TblMusteri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblAracBilgileri">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TblMusteri">
+        <PropertyRef Name="Arac" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Arac_SAT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="Musteriler" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="DB_GaleriModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblAracBilgileri" EntityType="Self.TblAracBilgileri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblKategori" EntityType="Self.TblKategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblMusteri" EntityType="Self.TblMusteri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_1].[MusteriID] AS [MusteriID], 
+    [View_1].[Ad] AS [Ad], 
+    [View_1].[Soyad] AS [Soyad], 
+    [View_1].[Telefon] AS [Telefon], 
+    [View_1].[Arac] AS [Arac], 
+    [View_1].[Marka] AS [Marka], 
+    [View_1].[Plaka] AS [Plaka], 
+    [View_1].[Kilometre] AS [Kilometre], 
+    [View_1].[Alis_Fiyati] AS [Alis_Fiyati], 
+    [View_1].[Satis_Fiyati] AS [Satis_Fiyati], 
+    [View_1].[Satis_Tarihi] AS [Satis_Tarihi]
+    FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_2" EntityType="Self.View_2" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_2].[ID] AS [ID], 
+    [View_2].[Marka] AS [Marka], 
+    [View_2].[Plaka] AS [Plaka], 
+    [View_2].[Kilometre] AS [Kilometre], 
+    [View_2].[Alis_Fiyati] AS [Alis_Fiyati], 
+    [View_2].[Alim_Tarihi] AS [Alim_Tarihi], 
+    [View_2].[Resim] AS [Resim], 
+    [View_2].[Kategori_ID] AS [Kategori_ID], 
+    [View_2].[Kategoriler] AS [Kategoriler], 
+    [View_2].[Durum] AS [Durum]
+    FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_3" EntityType="Self.View_3" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_3].[MusteriID] AS [MusteriID], 
+    [View_3].[Ad] AS [Ad], 
+    [View_3].[Soyad] AS [Soyad], 
+    [View_3].[Telefon] AS [Telefon], 
+    [View_3].[Arac] AS [Arac], 
+    [View_3].[ID] AS [ID], 
+    [View_3].[Marka] AS [Marka], 
+    [View_3].[Plaka] AS [Plaka], 
+    [View_3].[Kilometre] AS [Kilometre], 
+    [View_3].[Satis_Fiyati] AS [Satis_Fiyati], 
+    [View_3].[Satis_Tarihi] AS [Satis_Tarihi], 
+    [View_3].[Durum] AS [Durum], 
+    [View_3].[Kategori_ID] AS [Kategori_ID], 
+    [View_3].[Kategoriler] AS [Kategoriler]
+    FROM [dbo].[View_3] AS [View_3]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_TblAracBilgileri_TblKategori" Association="Self.FK_TblAracBilgileri_TblKategori">
+      <End Role="TblKategori" EntitySet="TblKategori" />
+      <End Role="TblAracBilgileri" EntitySet="TblAracBilgileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblAracBilgileri_TblMusteri" Association="Self.FK_TblAracBilgileri_TblMusteri">
+      <End Role="TblMusteri" EntitySet="TblMusteri" />
+      <End Role="TblAracBilgileri" EntitySet="TblAracBilgileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblMusteri_TblAracBilgileri" Association="Self.FK_TblMusteri_TblAracBilgileri">
+      <End Role="TblAracBilgileri" EntitySet="TblAracBilgileri" />
+      <End Role="TblMusteri" EntitySet="TblMusteri" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
